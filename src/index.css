@@ -11,3 +11,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+}
+footer {
+  margin-top: auto;
+}
+
+.side-btn {
+  position: fixed;
+  top: 8.5%;
+  left: 10px;
+  background-color: rgb(3 169 244);
+  color: #fff;
+  border: none;
+  transition: background .15s;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+}
+.side-btn i {
+  font-size: 2rem;
+}
+.side-btn:hover {
+  background-color: rgb(6, 121, 175);
+}
