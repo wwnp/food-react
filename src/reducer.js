@@ -10,6 +10,12 @@ export const reducer = (state, action) => {
       return { ...state, single: action.payload }
     case 'SET_FOOD_DETAILS':
       return { ...state, foodDetails: action.payload }
+    case 'SET_ERROR':
+      return { ...state, error: action.payload }
+    case 'SET_CAT_NAMES':
+      return { ...state, catNames: action.payload }
+    case 'SET_RANDOM_MEAL':
+      return { ...state, randomMeal: action.payload }
     default:
       return state
   }

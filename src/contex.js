@@ -5,7 +5,10 @@ const initialState = {
   categories: [],
   loading: true,
   single: [],
-  foodDetails: []
+  foodDetails: [],
+  error: '',
+  catNames: [],
+  randomMeal: {}
 }
 export const ContexProvider = (props) => {
   const [value, dispatch] = useReducer(reducer, initialState);
@@ -23,6 +26,12 @@ export const ContexProvider = (props) => {
   }
   value.setFoodDetails = (foodDetails) => {
     dispatch({ type: 'SET_FOOD_DETAILS', payload: foodDetails })
+  }
+  value.setError = (error) => {
+    dispatch({ type: 'SET_ERROR', payload: error })
+  }
+  value.setRandomMeal = (randomMeal) => {
+    dispatch({ type: 'SET_RANDOM_MEAL', payload: randomMeal })
   }
   return (
     <FoodContex.Provider value={value}>

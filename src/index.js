@@ -16,6 +16,7 @@ import "materialize-css/dist/css/materialize.min.css";
 import './index.css';
 import { SingleCategory } from './pages/SingleCategory';
 import { SingleFood } from './pages/SingleFood';
+import { RandomPage } from './pages/RandomPage';
 ReactDOM.render(
   <ContexProvider>
     <BrowserRouter>
@@ -26,6 +27,7 @@ ReactDOM.render(
           <Route path='contacts' element={<Contacts />} />
           <Route path='categories/:categories' element={<SingleCategory />} />
           <Route path='categories/:categories/:food' element={<SingleFood />} />
+          <Route path='/random' element={<RandomPage />} />
           <Route path='*' element={<Notfound />} />
           {/* <Route path="teams" element={<Teams />}>
           <Route path=":teamId" element={<Team />} />

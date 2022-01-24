@@ -18,15 +18,15 @@ export const SingleCategory = props => {
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(loading)
   return (
     <main className='container'>
+      <h1 className='center-align'>{needName}</h1>
+      <hr />
       {
         loading
           ? <Preloader color={'yellow'}></Preloader>
           : <SingleList single={single}></SingleList>
       }
-
     </main>
   )
 }
