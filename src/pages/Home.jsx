@@ -1,8 +1,10 @@
 import React, { useContext, useEffect } from 'react'
 import { FoodContex } from '../contex'
+import { CatsList } from './../components/CatsList';
+import { Preloader } from './../components/Preloader';
 export const Home = props => {
   const {
-    setCats,
+    setCategories,
     stopLoading,
     loading,
     categories
@@ -11,26 +13,22 @@ export const Home = props => {
     fetch('https://themealdb.com/api/json/v1/1/categories.php')
       .then((response) => response.json())
       .then((json) => {
-        setCats(json.categories)
+        setCategories(json.categories)
         setTimeout(() => {
           stopLoading()
-        }, 2000);
+        }, 200);
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  console.log(categories)
   return (
-    <div >
-      <h1>Home</h1>
+    <main className='container'>
       {loading
-        ? <h1>Loading...</h1>
+        ? <Preloader color={'yellow'}></Preloader>
         : (
-          categories.map(item => {
-            return <h1>{item.strCategory}</h1>
-          })
+          <CatsList categories={categories}></CatsList>
         )
       }
 
-    </div>
+    </main>
   )
 }

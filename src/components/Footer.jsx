@@ -1,7 +1,7 @@
 import React from 'react'
 export const Footer = props => {
   return (
-    <footer className="page-footer light-blue" style={{ paddingTop: 0 }}>
+    <footer className="page-footer grey darken-4" style={{ paddingTop: 0 }}>
       <div className="footer-copyright">
         <div className="container">
           © {new Date().getFullYear()} Copyright Text

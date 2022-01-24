@@ -18,6 +18,7 @@ code {
   min-height: 100vh;
   overflow: hidden;
 }
+
 footer {
   margin-top: auto;
 }
@@ -26,17 +27,112 @@ footer {
   position: fixed;
   top: 8.5%;
   left: 10px;
-  background-color: rgb(3 169 244);
+  background-color: #212121;
   color: #fff;
   border: none;
   transition: background .15s;
   cursor: pointer;
   height: 50px;
   width: 50px;
+  z-index: 100;
 }
+
 .side-btn i {
   font-size: 2rem;
 }
+
 .side-btn:hover {
   background-color: rgb(6, 121, 175);
+}
+
+.cats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow .15s;
+  border: 1px solid #797878;
+}
+
+.card:hover {
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 50%), 0 3px 1px -2px rgba(0, 0, 0, 0.5), 0 1px 5px 0 rgb(0 0 0 / 50%);
+}
+
+.card-action {
+  padding: 0!important;
+  transition: all ease .15s;
+  background-color: #302f2f !important;
+}
+.card-action a{
+  display: block;
+  padding: 17px;
+  width: 100%;
+  height: 100%;
+}
+.card-action:hover {
+  background-color: #111111 !important;
+}
+
+.card-content {
+  flex-grow: 1;
+}
+
+.card .card-title {
+  left: 50% !important;
+  font-size: 19px;
+  padding: 14px !important;
+  transform: translateX(-50%);
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.5);
+  transition: background .15s f;
+  border-radius: 15%;
+}
+
+.card:hover .card-title {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.card:hover .card-action a {
+  width: 100%;
+  height: 100%;
+  display: block;
+  color: rgb(255, 215, 142) !important;
+
+}
+
+/* p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+} */
+
+.loader-custom {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+main {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.side-a {
+  border-right: none;
+}
+.side-a:hover {
+  border-right: 5px solid orange;
+}
+.active-side {
+  background-color: rgb(194, 194, 194);
+}
+.active-side:hover {
+  background-color: rgb(194, 194, 194)!important;
 }
