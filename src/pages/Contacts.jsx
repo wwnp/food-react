@@ -1,8 +1,8 @@
 import React from 'react'
 export const Contacts = props => {
   return (
-    <div >
-      Contacts
-    </div>
+    <main className='container center'>
+      <h1>Contacts</h1>
+    </main>
   )
 }

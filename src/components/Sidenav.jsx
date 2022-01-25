@@ -4,6 +4,16 @@ export const Sidenav = props => {
   return (
     <ul id="slide-out" className="sidenav sidenav-close" ref={props.innerRef}>
       <li style={{ marginTop: '30px' }}>
+        <a
+          href="https://github.com/wwnp/food-react"
+          target={'_blank'}
+          rel="noreferrer"
+          className='side-a'
+        >
+          GitHub Repo
+        </a>
+      </li>
+      <li>
         <NavLink
           to="/"
           className={({ isActive }) => (isActive ? 'side-a active-side' : 'side-a')}
@@ -27,7 +37,7 @@ export const Sidenav = props => {
           Contacts
         </NavLink>
       </li>
-      <span style={{ position: 'absolute', top: '0.5%', right: '2.5%',cursor:'pointer' }}>X</span>
+      <span style={{ position: 'absolute', top: '0.5%', right: '2.5%', cursor: 'pointer' }}>X</span>
     </ul >
   )
 }

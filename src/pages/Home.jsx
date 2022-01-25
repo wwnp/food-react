@@ -10,6 +10,7 @@ export const Home = props => {
     loading,
     categories,
   } = useContext(FoodContex)
+
   useEffect(() => {
     fetch('https://themealdb.com/api/json/v1/1/categories.php')
       .then((response) => response.json())
@@ -18,13 +19,15 @@ export const Home = props => {
         stopLoading()
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [categories])
+
   const randomCategory = getRandomCategory()
+
   return (
     <main className='container'>
       <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
-        <a href={`categories/${randomCategory}`} className='btn btn-large black orange-text hoverable'>Random category</a>
-        <a href={`/random`} className='btn btn-large black orange-text hoverable'>Random meal</a>
+        <a href={`categories/${randomCategory}`} className='btn btn-large black orange-text custom-hover-random' >Random category</a>
+        <a href={`/random`} className='btn btn-large black orange-text hoverable custom-hover-random'>Random meal</a>
       </div>
       <hr style={{ margin: '20px 0 20px 0' }} />
       {loading

@@ -5,7 +5,14 @@ export const Footer = props => {
       <div className="footer-copyright">
         <div className="container">
           © {new Date().getFullYear()} Copyright Text
-          <a className="grey-text text-lighten-4 right" href="#!">More Links</a>
+          <a
+            className="grey-text text-lighten-4 right hoverable"
+            href="https://github.com/wwnp"
+            target={'_blank'}
+            rel="noreferrer"
+          >
+            By Serge Gilev
+          </a>
         </div>
       </div>
     </footer>

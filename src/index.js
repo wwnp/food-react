@@ -25,15 +25,10 @@ ReactDOM.render(
           <Route index element={<Home />} />
           <Route path='about' element={<About />} />
           <Route path='contacts' element={<Contacts />} />
-          <Route path='categories/:categories' element={<SingleCategory />} />
-          <Route path='categories/:categories/:food' element={<SingleFood />} />
+          <Route path='categories/:name' element={<SingleCategory />} />
+          <Route path='categories/:categories/:foodId' element={<SingleFood />} />
           <Route path='/random' element={<RandomPage />} />
           <Route path='*' element={<Notfound />} />
-          {/* <Route path="teams" element={<Teams />}>
-          <Route path=":teamId" element={<Team />} />
-          <Route path="new" element={<NewTeamForm />} />
-          <Route index element={<LeagueStandings />} />
-        </Route> */}
         </Route>
       </Routes>
     </BrowserRouter>
