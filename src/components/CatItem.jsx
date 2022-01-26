@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 export const CatItem = props => {
   const { strCategory, strCategoryDescription, strCategoryThumb } = props
   return (
@@ -9,7 +10,7 @@ export const CatItem = props => {
           {/* <span className="card-title center-align">{strCategory}</span> */}
         </div>
         <div className="card-action">
-          <a href={`categories/` + strCategory}>{strCategory}</a>
+          <Link to={`categories/` + strCategory}>{strCategory}</Link>
         </div>
       </div>
     </div>

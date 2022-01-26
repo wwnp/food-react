@@ -41,7 +41,7 @@ export const RandomPage = props => {
             </div>
             <div className="col s12 m8">
               <h1 style={{ margin: '0' }}>{strMeal}</h1>
-              <textarea name="inctr" id="" cols="10" rows="15" >{strInstructions}</textarea>
+              <textarea name="inctr" id="" cols="10" rows="15" defaultValue={strInstructions}></textarea>
             </div>
             <div className="col s12">
               <hr style={{ margin: '40px 0 40px 0' }} />
@@ -63,7 +63,7 @@ export const RandomPage = props => {
                             <td>{randomMeal[item]}</td>
                             <td>
                               {
-                                randomMeal[`strMeasure${item.slice(13)}`]
+                                randomMeal[`strMeasure${item?.slice(13)}`]
                               }
                             </td>
                           </tr>
@@ -80,7 +80,7 @@ export const RandomPage = props => {
               <iframe
                 width="100%"
                 height="515"
-                src={`https://www.youtube.com/embed/${strYoutube.slice(-11)}`}
+                src={`https://www.youtube.com/embed/${strYoutube?.slice(-11)}`}
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -27,7 +27,7 @@ ReactDOM.render(
           <Route path='contacts' element={<Contacts />} />
           <Route path='categories/:name' element={<SingleCategory />} />
           <Route path='categories/:categories/:foodId' element={<SingleFood />} />
-          <Route path='/random' element={<RandomPage />} />
+          <Route path='random' element={<RandomPage />} />
           <Route path='*' element={<Notfound />} />
         </Route>
       </Routes>

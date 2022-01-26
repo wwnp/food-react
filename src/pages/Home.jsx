@@ -8,6 +8,7 @@ import { SearchItem } from '../components/SearchItem';
 import { SEARCH_MOD } from './../contex';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const Home = props => {
   const {
@@ -143,8 +144,8 @@ export const Home = props => {
   return (
     <main className='container'>
       <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
-        <a href={`categories/${randomCategory}`} className='btn btn-large black orange-text custom-hover-random' >Random category</a>
-        <a href={`/random`} className='btn btn-large black orange-text hoverable custom-hover-random'>Random meal</a>
+        <Link to={`categories/${randomCategory}`} className='btn btn-large black orange-text custom-hover-random' >Random category</Link>
+        <Link to={`/random`} className='btn btn-large black orange-text hoverable custom-hover-random'>Random meal</Link>
       </div>
       <hr style={{ margin: '40px 0 40px 0' }} />
       <Search
