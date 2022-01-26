@@ -25,6 +25,7 @@ export const ContexProvider = (props) => {
     dispatch({ type: 'SET_CATEGORIES', payload: cats })
   }
   value.setFilteredCategories = (filteredCategories) => {
+    console.log(filteredCategories)
     dispatch({ type: 'SET_FILTERED_CATEGORIES', payload: filteredCategories })
   }
   value.stopLoading = () => {

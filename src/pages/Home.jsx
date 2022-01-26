@@ -30,21 +30,20 @@ export const Home = props => {
   const location = useLocation()
   const navigate = useNavigate()
   // const [filteredCategories, setFilteredCategories] = useState([]);
+  console.log(filteredCategories)
 
   useEffect(() => {
     fetch('https://themealdb.com/api/json/v1/1/categories.php')
       .then((response) => response.json())
       .then((json) => {
-        const searchCat = location.search.split('=')[1] // ex:Beef
-
+        // const searchCat = location.search.split('=')[1] // ex:Beef
         setCategories(json.categories)
-
-        const filteredCategory = json.categories.filter(item => {
-          return item.strCategory.toLowerCase().includes(searchCat.toLowerCase())
-        })
-        
-        setFilteredCategories(searchCat
-          ? filteredCategory
+        setFilteredCategories(location.search
+          ? json.categories.filter((item) =>
+            item.strCategory
+              .toLowerCase()
+              .includes(location.search.split('=')[1].toLowerCase())
+          )
           : json.categories
         )
         stopLoading()
@@ -54,12 +53,19 @@ export const Home = props => {
         stopLoading()
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.search])
+  }, [])
 
   const handleSearch = (str) => {
     if (str.length >= 3) {
+      console.log(123)
       setFilteredCategories(
-        categories.filter(item => item.strCategory.toLowerCase().includes(str.toLowerCase()))
+        categories.filter(item => {
+          console.log(item.strCategory.toLowerCase(),str.toLowerCase())
+          return item.strCategory
+            .toLowerCase()
+            .includes(str.toLowerCase())
+        }
+        )
       )
       navigate({
         pathname: '/',
