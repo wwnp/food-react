@@ -5,10 +5,12 @@ export const SearchItem = props => {
     strMeal,
     strInstructions,
     foodDetails,
-    strYoutube
+    strYoutube,
+    fetchCats
   } = props
   return (
     <div className="row">
+      <button className='btn' onClick={fetchCats}>Back</button>
       <div className="col s12 m6">
         <img className='left-align' src={strMealThumb} alt="" width={'100%'} />
       </div>

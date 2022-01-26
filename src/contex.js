@@ -1,10 +1,11 @@
 import { createContext, useReducer } from "react";
 import { reducer } from "./reducer";
 export const FoodContex = createContext()
-export const CAT_MOD ='CAT_MODE'
-export const SEARCH_MOD ='SEARCH_MOD'
+export const CAT_MOD = 'CAT_MODE'
+export const SEARCH_MOD = 'SEARCH_MOD'
 const initialState = {
   categories: [],
+  filteredCategories: [],
   loading: true,
   single: [],
   foodDetails: [],
@@ -22,6 +23,9 @@ export const ContexProvider = (props) => {
   }
   value.setCategories = (cats) => {
     dispatch({ type: 'SET_CATEGORIES', payload: cats })
+  }
+  value.setFilteredCategories = (filteredCategories) => {
+    dispatch({ type: 'SET_FILTERED_CATEGORIES', payload: filteredCategories })
   }
   value.stopLoading = () => {
     dispatch({ type: 'LOADING_FALSE' })

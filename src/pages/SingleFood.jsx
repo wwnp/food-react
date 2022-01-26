@@ -16,7 +16,6 @@ export const SingleFood = props => {
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${foodId}`)
       .then((response) => response.json())
       .then((json) => {
-        console.log(json.meals[0])
         setFoodDetails(json.meals[0])
         setTimeout(() => {
           stopLoading()
@@ -50,7 +49,7 @@ export const SingleFood = props => {
                 </div>
                 <div className="col s12 m6">
                   <h1 style={{ margin: '0' }}>{strMeal}</h1>
-                  <textarea name="inctr" id="" cols="10" rows="15" >{strInstructions}</textarea>
+                  <textarea name="inctr" id="" cols="10" rows="15" defaultValue={strInstructions}></textarea>
                 </div>
 
                 <div className="col s12">

@@ -6,6 +6,8 @@ import { randomCat } from '../auxiliary';
 import { Search } from './../components/Search';
 import { SearchItem } from '../components/SearchItem';
 import { SEARCH_MOD } from './../contex';
+import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const Home = props => {
   const {
@@ -21,18 +23,70 @@ export const Home = props => {
     setError,
     error,
     homeMode,
-    setHomeMode
+    setHomeMode,
+    setFilteredCategories,
+    filteredCategories
   } = useContext(FoodContex)
+  const location = useLocation()
+  const navigate = useNavigate()
+  // const [filteredCategories, setFilteredCategories] = useState([]);
 
   useEffect(() => {
     fetch('https://themealdb.com/api/json/v1/1/categories.php')
       .then((response) => response.json())
       .then((json) => {
+        const searchCat = location.search.split('=')[1] // ex:Beef
+
         setCategories(json.categories)
+
+        const filteredCategory = json.categories.filter(item => {
+          return item.strCategory.toLowerCase().includes(searchCat.toLowerCase())
+        })
+        
+        setFilteredCategories(searchCat
+          ? filteredCategory
+          : json.categories
+        )
+        stopLoading()
+      })
+      .catch((err) => {
+        setError('Error')
         stopLoading()
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [location.search])
+
+  const handleSearch = (str) => {
+    if (str.length >= 3) {
+      setFilteredCategories(
+        categories.filter(item => item.strCategory.toLowerCase().includes(str.toLowerCase()))
+      )
+      navigate({
+        pathname: '/',
+        search: `?search=${str}`
+      })
+    }
+    if (str.length === 0) {
+      setFilteredCategories(
+        categories.filter(item => item.strCategory.toLowerCase().includes(str.toLowerCase()))
+      )
+      navigate({
+        pathname: '/',
+        search: ``
+      })
+    }
+  }
+
+  // const fetchCats = () => {
+  //   setHomeMode(CAT_MOD)
+  //   startLoading()
+  //   fetch('https://themealdb.com/api/json/v1/1/categories.php')
+  //     .then((response) => response.json())
+  //     .then((json) => {
+  //       setCategories(json.categories)
+  //       stopLoading()
+  //     })
+  // }
 
   const fetchSearchFood = (search) => {
     setMeal(null)
@@ -43,7 +97,7 @@ export const Home = props => {
       .then((response) => response.json())
       .then((json) => {
         if (json.meals === null || Object.keys(json).length === 0) {
-          setError('Error')
+          setError('Not Found')
           stopLoading()
           return
         }
@@ -51,9 +105,33 @@ export const Home = props => {
         stopLoading()
       })
       .catch(err => {
-        setError('Error')
+        setError('Error try later')
+        stopLoading()
+
       })
   }
+
+  // let output = null
+  // if (homeMode === CAT_MOD && loading === false) {
+  //   output = error
+  //   ? <h1>{error}</h1>
+  //   : <CatsList categories={categories}></CatsList>
+  // }
+  // if (homeMode === SEARCH_MOD && loading === false) {
+  //   output = error
+  //     ? <h1>{error}</h1>
+  //     : (
+  //       <SearchItem
+  //         strMealThumb={searchMeal.strMealThumb}
+  //         strMeal={searchMeal.strMeal}
+  //         strInstructions={searchMeal.strInstructions}
+  //         foodDetails={searchMeal}
+  //         strYoutube={searchMeal.strYoutube}
+  //         fetchCats={fetchCats}
+  //       >
+  //       </SearchItem>
+  //     )
+  // }
 
   const randomCategory = getRandomCategory()
   return (
@@ -64,31 +142,15 @@ export const Home = props => {
       </div>
       <hr style={{ margin: '40px 0 40px 0' }} />
       <Search
+        cb={handleSearch}
         fetchSearchFood={fetchSearchFood}
         setSearch={setSearch}
         search={search}
       >
       </Search>
-
-      
       {loading
         ? <Preloader color={'yellow'}></Preloader>
-        :
-        homeMode === CAT_MOD
-          ? <CatsList categories={categories}></CatsList>
-          :
-          error
-            ? <h1>{error}</h1>
-            : (
-              <SearchItem
-                strMealThumb={searchMeal.strMealThumb}
-                strMeal={searchMeal.strMeal}
-                strInstructions={searchMeal.strInstructions}
-                foodDetails={searchMeal}
-                strYoutube={searchMeal.strYoutube}
-              >
-              </SearchItem>
-            )
+        : <CatsList categories={filteredCategories}></CatsList>
       }
     </main >
   )

@@ -23,8 +23,9 @@ export const reducer = (state, action) => {
     case 'SET_MEAL':
       return { ...state, searchMeal: action.payload }
     case 'SET_MODE':
-      console.log(action)
       return { ...state, homeMode: action.payload }
+    case 'SET_FILTERED_CATEGORIES':
+      return { ...state, filteredCategories: action.payload }
     default:
       return state
   }
