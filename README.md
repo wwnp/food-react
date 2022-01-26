@@ -36,5 +36,6 @@ demo:
         </Routes>
       </BrowserRouter>
 
+    npm run deploy
   </p>
 </details>
