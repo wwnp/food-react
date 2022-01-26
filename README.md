@@ -1,5 +1,5 @@
 ## PROJECT WHATTOCOOK
-demo: 
+demo: https://wwnp.github.io/food-react/
 
 ###### :
 <p>
@@ -36,6 +36,10 @@ demo:
         </Routes>
       </BrowserRouter>
 
+<<<<<<< HEAD
     test
+=======
+    npm run deploy
+>>>>>>> 4d738c56e68ce8fd50826554e275fa1d1fd3e743
   </p>
 </details>
