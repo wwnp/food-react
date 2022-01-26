@@ -19,7 +19,7 @@ import { SingleFood } from './pages/SingleFood';
 import { RandomPage } from './pages/RandomPage';
 ReactDOM.render(
   <ContexProvider>
-    <BrowserRouter>
+    <BrowserRouter basename='/food-react'>
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
