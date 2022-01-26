@@ -6,6 +6,8 @@ export const reducer = (state, action) => {
       return { ...state, categories: action.payload }
     case 'LOADING_FALSE':
       return { ...state, loading: false }
+    case 'LOADING_TRUE':
+      return { ...state, loading: true }
     case 'SET_SINGLE_FOOD':
       return { ...state, single: action.payload }
     case 'SET_FOOD_DETAILS':
@@ -16,6 +18,13 @@ export const reducer = (state, action) => {
       return { ...state, catNames: action.payload }
     case 'SET_RANDOM_MEAL':
       return { ...state, randomMeal: action.payload }
+    case 'SET_SEARCH':
+      return { ...state, search: action.payload }
+    case 'SET_MEAL':
+      return { ...state, searchMeal: action.payload }
+    case 'SET_MODE':
+      console.log(action)
+      return { ...state, homeMode: action.payload }
     default:
       return state
   }

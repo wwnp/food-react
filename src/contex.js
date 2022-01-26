@@ -1,6 +1,8 @@
 import { createContext, useReducer } from "react";
 import { reducer } from "./reducer";
 export const FoodContex = createContext()
+export const CAT_MOD ='CAT_MODE'
+export const SEARCH_MOD ='SEARCH_MOD'
 const initialState = {
   categories: [],
   loading: true,
@@ -8,7 +10,10 @@ const initialState = {
   foodDetails: [],
   error: '',
   catNames: [],
-  randomMeal: {}
+  randomMeal: {},
+  search: '',
+  searchMeal: {},
+  homeMode: CAT_MOD
 }
 export const ContexProvider = (props) => {
   const [value, dispatch] = useReducer(reducer, initialState);
@@ -21,6 +26,9 @@ export const ContexProvider = (props) => {
   value.stopLoading = () => {
     dispatch({ type: 'LOADING_FALSE' })
   }
+  value.startLoading = () => {
+    dispatch({ type: 'LOADING_TRUE' })
+  }
   value.setSingle = (food) => {
     dispatch({ type: 'SET_SINGLE_FOOD', payload: food })
   }
@@ -32,6 +40,15 @@ export const ContexProvider = (props) => {
   }
   value.setRandomMeal = (randomMeal) => {
     dispatch({ type: 'SET_RANDOM_MEAL', payload: randomMeal })
+  }
+  value.setSearch = (search) => {
+    dispatch({ type: 'SET_SEARCH', payload: search })
+  }
+  value.setMeal = (meal) => {
+    dispatch({ type: 'SET_MEAL', payload: meal })
+  }
+  value.setHomeMode = (mode) => {
+    dispatch({ type: 'SET_MODE', payload: mode })
   }
   return (
     <FoodContex.Provider value={value}>

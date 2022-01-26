@@ -155,11 +155,6 @@ main {
   }
 }
 
-@media (min-width: 1200px) {
-  .custom-hover-random {
-    width: 20%;
-  }
-}
 textarea {
   margin-top: 10px;
   padding: 10px;
