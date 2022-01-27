@@ -27,7 +27,7 @@ demo: https://wwnp.github.io/food-react/
     ---
 
     if SPA:
-      <BrowserRouter basename='/react-food'>
+      <BrowserRouter basename='/food-react'>
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<Home />} />
