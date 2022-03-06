@@ -162,3 +162,15 @@ textarea {
   width: 100%;
   height: auto; 
 }
+
+/* MUI */
+.MuiPagination-root  {
+  background-color: #ffb74d!important;
+}
+.MuiButtonBase-root {
+  
+  color: #fff!important;
+}
+.Mui-selected {
+  color: #000!important;
+}

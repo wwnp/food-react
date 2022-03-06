@@ -20,3 +20,4 @@ export const randomIdMeal = [
   52878,
   52995
 ]
+export const PER_PAGE = 8

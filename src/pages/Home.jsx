@@ -2,13 +2,14 @@ import React, { useContext, useEffect } from 'react'
 import { CAT_MOD, FoodContex } from '../contex'
 import { CatsList } from './../components/CatsList';
 import { Preloader } from './../components/Preloader';
-import { randomCat } from '../auxiliary';
+import { PER_PAGE, randomCat } from '../auxiliary';
 import { Search } from './../components/Search';
 import { SearchItem } from '../components/SearchItem';
 import { SEARCH_MOD } from './../contex';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { Button, Input, Link as MuLink, Pagination, PaginationItem, Stack, TextField } from '@mui/material'
 
 export const Home = props => {
   const {
@@ -30,23 +31,29 @@ export const Home = props => {
   } = useContext(FoodContex)
   const location = useLocation()
   const navigate = useNavigate()
-  // const [filteredCategories, setFilteredCategories] = useState([]);
-  console.log(filteredCategories)
+
+  const [page, setPage] = useState(1)
+  const [outPosts, setOutPosts] = useState(filteredCategories)
+  const [posts, setPosts] = useState([])
 
   useEffect(() => {
+
     fetch('https://themealdb.com/api/json/v1/1/categories.php')
       .then((response) => response.json())
       .then((json) => {
         // const searchCat = location.search.split('=')[1] // ex:Beef
         setCategories(json.categories)
-        setFilteredCategories(location.search
-          ? json.categories.filter((item) =>
-            item.strCategory
-              .toLowerCase()
-              .includes(location.search.split('=')[1].toLowerCase())
-          )
-          : json.categories
-        )
+        // setPosts(json.categories)
+        setFilteredCategories(json.categories)
+        // setFilteredCategories(
+        //   location.search
+        //     ? json.categories.filter((item) =>
+        //       item.strCategory
+        //         .toLowerCase()
+        //         .includes(location.search.split('=')[1].toLowerCase())
+        //     )
+        //     : json.categories
+        // )
         stopLoading()
       })
       .catch((err) => {
@@ -58,10 +65,9 @@ export const Home = props => {
 
   const handleSearch = (str) => {
     if (str.length >= 3) {
-      console.log(123)
       setFilteredCategories(
         categories.filter(item => {
-          console.log(item.strCategory.toLowerCase(),str.toLowerCase())
+          // console.log(item.strCategory.toLowerCase(), str.toLowerCase())
           return item.strCategory
             .toLowerCase()
             .includes(str.toLowerCase())
@@ -70,7 +76,7 @@ export const Home = props => {
       )
       navigate({
         pathname: '/',
-        search: `?search=${str}`
+        search: `?page=${page}&search=${str}`
       })
     }
     if (str.length === 0) {
@@ -79,10 +85,25 @@ export const Home = props => {
       )
       navigate({
         pathname: '/',
-        search: ``
+        search: `?page=${page}`
       })
     }
   }
+
+  useEffect(() => {
+    console.log(123)
+    const indexLast = page * PER_PAGE
+    const indexFirst = indexLast - PER_PAGE
+    setOutPosts(filteredCategories.slice(indexFirst, indexLast))
+    if(search) {
+      navigate(`/?page=${page}&search=${search}`)
+    }else {
+      navigate(`/?page=${page}`)
+    }
+
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, filteredCategories])
 
   // const fetchCats = () => {
   //   setHomeMode(CAT_MOD)
@@ -141,6 +162,7 @@ export const Home = props => {
   // }
 
   const randomCategory = getRandomCategory()
+
   return (
     <main className='container'>
       <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
@@ -157,8 +179,33 @@ export const Home = props => {
       </Search>
       {loading
         ? <Preloader color={'yellow'}></Preloader>
-        : <CatsList categories={filteredCategories}></CatsList>
+        : (
+          <CatsList categories={outPosts}></CatsList>
+        )
       }
+      <button onClick={() => setPage(page + 1)}>+</button>
+      <Stack>
+        < Pagination
+          variant="outlined"
+          color="primary"
+          count={Math.ceil(filteredCategories.length / PER_PAGE)}
+          page={page}
+          onChange={(_, num) => setPage(num)}
+          sx={{ marginY: 3, marginX: 'auto' }}
+          showFirstButton={true}
+          showLastButton={true}
+        // renderItem={
+        //   (item) => (
+        //     <PaginationItem
+        //       component={Link}
+        //       to={`/?page=${item.page}`}
+        //       {...item}
+        //     >
+        //     </PaginationItem>
+        //   )
+        // }
+        />
+      </Stack>
     </main >
   )
 }
@@ -169,4 +216,8 @@ function getRandomCategory() {
 }
 function getRandomNumber(min, max) {
   return Math.floor(min + Math.random() * (max - min + 1))
+}
+function getPage(search) {
+  const temp = search.indexOf('page') + 5
+  return search.charAt(temp)
 }
