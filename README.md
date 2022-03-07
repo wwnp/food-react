@@ -1,13 +1,8 @@
 ## PROJECT WHATTOCOOK
 demo: https://wwnp.github.io/food-react/
-
-
-
-
-
 ###### :
 <p>
-  1.make pagination
+  1.make search page-single-category
 </p>
 
 <details>

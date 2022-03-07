@@ -165,11 +165,10 @@ export const Home = props => {
 
   return (
     <main className='container'>
-      <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', marginBottom: '1rem' }}>
         <Link to={`categories/${randomCategory}`} className='btn btn-large black orange-text custom-hover-random' >Random category</Link>
         <Link to={`/random`} className='btn btn-large black orange-text hoverable custom-hover-random'>Random meal</Link>
       </div>
-      <hr style={{ margin: '40px 0 40px 0' }} />
       <Search
         cb={handleSearch}
         fetchSearchFood={fetchSearchFood}
@@ -183,7 +182,6 @@ export const Home = props => {
           <CatsList categories={outPosts}></CatsList>
         )
       }
-      <button onClick={() => setPage(page + 1)}>+</button>
       <Stack>
         < Pagination
           variant="outlined"

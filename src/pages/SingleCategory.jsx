@@ -33,13 +33,15 @@ export const SingleCategory = props => {
   const currentPosts = single.slice(indexOfFirstPost, indexOfLastPost)
   return (
     <main className='container'>
-      <h2 className='center-align'>{name}</h2>
 
-      <div className='right-align'>
-        <button className='btn orange lighten-2 ' onClick={() => navigate(-1)}>Back</button>
+      <div>
+
+        <button className='btn orange lighten-2 right' onClick={() => navigate(-1)}>Back</button>
+        <h4 className='center-align' style={{marginTop:'.25rem'}}>{name}</h4>
       </div>
 
-      <hr style={{ margin: '40px 0 40px 0' }} />
+
+      <hr style={{ margin: '0 0 20px 0' }} />
       {
         loading
           ? <Preloader color={'yellow'}></Preloader>

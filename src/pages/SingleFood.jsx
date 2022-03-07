@@ -32,10 +32,10 @@ export const SingleFood = props => {
 
   return (
     <main className='container'>
-      <div className='right-align'>
+      <div className='left-align'>
         <button className='btn orange lighten-2 ' onClick={() => navigate(-1)}>Back</button>
       </div>
-      <hr style={{ margin: '40px 0 40px 0' }} />
+      <hr style={{ margin: '20px 0 20px 0' }} />
       {
         loading
           ? <Preloader color={'yellow'}></Preloader>
