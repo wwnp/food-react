@@ -91,17 +91,16 @@ export const Home = props => {
   }
 
   useEffect(() => {
-    console.log(123)
     const indexLast = page * PER_PAGE
     const indexFirst = indexLast - PER_PAGE
     setOutPosts(filteredCategories.slice(indexFirst, indexLast))
-    if(search) {
+    if (search) {
       navigate(`/?page=${page}&search=${search}`)
-    }else {
+    } else {
       navigate(`/?page=${page}`)
     }
 
-    
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, filteredCategories])
 
