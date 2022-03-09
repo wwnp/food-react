@@ -8,8 +8,8 @@ import { Pagination, Stack } from '@mui/material';
 import { PER_PAGE } from '../auxiliary';
 import { useLocation } from 'react-router-dom';
 import { SearchTwo } from '../components/SearchTwo';
-const queryString = require('query-string');
 
+const queryString = require('query-string');
 const NORMAL = 'NORMAL'
 const SEARCH = 'SEARCH'
 
@@ -25,7 +25,6 @@ export const SingleCategory = props => {
   const [outPosts, setOutPosts] = useState([])
   const [preModPosts, setPreModPosts] = useState([])
   const [modPosts, setModPosts] = useState([])
-  const [search, setSearch] = useState('')
 
   useEffect(() => {
     fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${name}`)
@@ -38,7 +37,7 @@ export const SingleCategory = props => {
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(outPosts)
+
   useEffect(() => {
     const asd = queryString.parse(location.search);
 
@@ -95,14 +94,12 @@ export const SingleCategory = props => {
 
   return (
     <main className='container'>
-
       <div>
         <button className='btn orange lighten-2 left' onClick={() => navigate('/')}>Back</button>
         <h4 className='center-align' style={{ marginTop: '.25rem' }}>{name}</h4>
       </div>
-
       <SearchTwo handleSearch={filterMeals} handleReset={resetAll}></SearchTwo>
-
+      <br />
       {
         loading
           ? <Preloader color={'yellow'}></Preloader>
@@ -147,10 +144,6 @@ export const SingleCategory = props => {
     </main>
   )
 }
-// function getNeededName(string) {
-//   const indexSlice = string.indexOf('/', 1)
-//   return string.slice(indexSlice + 1, string.length).trim()
-// }
 function getPage(search) {
   const temp = search.indexOf('page') + 5
   return search.charAt(temp)

@@ -11,13 +11,14 @@ export const SearchTwo = ({ handleSearch = Function.prototype, handleReset = Fun
     handleSearch(value)
   }
   const handleResetButton = () => {
-    handleReset(value)
+    setValue('')
+    handleReset()
   }
   return (
     <div>
       <input type="text" value={value} onChange={e => setValue(e.target.value)} onKeyDown={handleKeyDown} />
-      <button onClick={handleSendButton}>Send</button>
-      <button onClick={handleResetButton}>Reset</button>
+      <button className='btn orange lighten-2 mr-2' onClick={handleSendButton}>Search</button>
+      <button className='btn red lighten-2 ' onClick={handleResetButton}>Reset</button>
     </div>
   )
 }
